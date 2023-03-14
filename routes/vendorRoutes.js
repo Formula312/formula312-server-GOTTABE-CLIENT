@@ -23,4 +23,22 @@ app.post("/vendor", async (request, response) => {
   }
 });
 
+app.put("/vendor/:id", async (request, response) => {
+  try {
+    const updatedVendor = await vendorsSchema.findByIdAndUpdate(
+      request.params.id,
+      request.body,
+      {
+        new: true,
+        runValidators: true,
+        context: "query",
+      }
+    );
+
+    response.status(200).json({ success: true, data: updatedVendor });
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
 module.exports = app;

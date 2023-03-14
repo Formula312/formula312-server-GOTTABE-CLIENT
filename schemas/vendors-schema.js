@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+const Services = mongoose.Schema({
+  interior: [String],
+  exterior: [String],
+});
+
 const vendorsSchema = mongoose.Schema({
   id: Number,
   title: String,
@@ -11,7 +16,7 @@ const vendorsSchema = mongoose.Schema({
   basePrice: Number,
   promoContentTop: String,
   promoContentBottom: String,
-  serviceTypes: Object,
+  serviceTypes: Services,
 });
 
 module.exports = mongoose.model("vendors-services", vendorsSchema);
